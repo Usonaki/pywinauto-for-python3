@@ -70,31 +70,31 @@ for ctrl in controls:
 
 allChars.difference_update(" _&")
 
-freeChars = allChars.difference(hotkeyCtrls.keys())
-print freeChars
+freeChars = allChars.difference(list(hotkeyCtrls.keys()))
+print(freeChars)
 
 
 for c in hotkeyCtrls:
-	print c
+	print(c)
 	for ctrl in hotkeyCtrls[c]:
-		print "\t", ctrl
+		print(("\t", ctrl))
 
 if len(allChars) < len(controls):
-	print "impossible to fix completely because there are more hotkeys then individual characters in the dialog"
-	print "the following characters are free:"
+	print("impossible to fix completely because there are more hotkeys then individual characters in the dialog")
+	print("the following characters are free:")
 	
 	#for c in freeChars:
 	#	print "\t%s"% c
 	#	for ctrl in charIndex[c]:
 	#		print "\t\t%s" % ctrl
 			
-	usedChars = hotkeyCtrls.keys()
+	usedChars = list(hotkeyCtrls.keys())
 	
 	changesMade = 1
 	while changesMade:
 		changesMade = 0
 		
-		for char, ctrls in charIndex.items():
+		for char, ctrls in list(charIndex.items()):
 
 			# if there is only one control that has this character
 			if len (ctrls) == 1:
@@ -104,7 +104,7 @@ if len(allChars) < len(controls):
 				# find the hotkey for that control
 				ctrlHotkey = GetHotkey(ctrl)[1].lower()
 				
-				print ctrlHotkey, `ctrl`
+				print((ctrlHotkey, repr(ctrl)))
 				# remove the control from the list
 				hotkeyCtrls[ctrlHotkey].remove(ctrl)
 				
@@ -119,21 +119,17 @@ if len(allChars) < len(controls):
 else:
 	
 
-	for hotkey, ctrls in hotkeyCtrls.items():
+	for hotkey, ctrls in list(hotkeyCtrls.items()):
 		if len(ctrls) > 1:
 			for ctrl in ctrls:
 				ctrlChars = set(ctrl.lower()).difference(" &_")
 				if freeChars.intersection(ctrlChars):
-					
-	
-
-
-print "="*100
+                                       print(("="*100))
 
 for c in hotkeyCtrls:
-	print c
+	print(c)
 	for ctrl in hotkeyCtrls[c]:
-		print "\t", ctrl
+		print(("\t", ctrl))
 
 	
 	
@@ -141,10 +137,10 @@ for c in hotkeyCtrls:
 #for x in charIndex:
 #	print x, charIndex[x]
 	
-for hotkey, ctrls in hotkeyCtrls.items():
+for hotkey, ctrls in list(hotkeyCtrls.items()):
 	if len(ctrls) > 1:
-		print "***** BUG *****"
-		print "\t", hotkey, ctrls
+		print("***** BUG *****")
+		print(("\t", hotkey, ctrls))
 		
 		# find the chars free for each control
 		ctrlFree = []
@@ -154,11 +150,11 @@ for hotkey, ctrls in hotkeyCtrls.items():
 		# count the controls with no hotkey free
 		countNotFree = len([c for c in ctrlFree if not c])
 		if countNotFree > 1:
-			print "Cannot be fixed without possibly changing other controls also"
+			print("Cannot be fixed without possibly changing other controls also")
 		
 		for i, free in enumerate(ctrlFree):
 			if not free:
-				print "Must leave '%s' alone" %ctrls[i]
+				print(("Must leave '%s' alone" %ctrls[i]))
 		
 		
 
@@ -229,18 +225,18 @@ allKeys.difference_update("& _")
 
 freeKeys = allKeys.difference(hotkeys)
 
-print len(controls)
+print((len(controls)))
 if len(controls) > len(allKeys):
-	print "**** Oops - more hotkeys than available characters :-( "
+	print("**** Oops - more hotkeys than available characters :-( ")
 	
 
 
 	
 
 	
-for hotkey, ctrls in hotkeyCtrls.items():
+for hotkey, ctrls in list(hotkeyCtrls.items()):
 	if len(ctrls) > 1:
-		print "**bug**"
+		print("**bug**")
 		
 		# can it be fixed simply by changing one or more of the controls
 		# to another character within these controls
@@ -256,7 +252,7 @@ for hotkey, ctrls in hotkeyCtrls.items():
 		# ok - so more than one control has no free chars - can't use the 
 		# simple method
 		if noFreeCount > 1:
-			print "cant use that method"
+			print("cant use that method")
 			continue
 		
 		if noFreeCount == 0:
@@ -266,11 +262,11 @@ for hotkey, ctrls in hotkeyCtrls.items():
 		
 		for i, ctrl in enumerate(ctrls):
 			if len(ctrlsFreeChars[i]) > 1:
-				print "Change '%s' to one of (%s)%s"% (ctrl, "".join(ctrlsFreeChars[i]), extraText)
+				print(("Change '%s' to one of (%s)%s"% (ctrl, "".join(ctrlsFreeChars[i]), extraText)))
 			elif len(ctrlsFreeChars[i]) == 1:
-				print "Change '%s' to %s%s"% (ctrl, "".join(ctrlsFreeChars[i]), extraText)
+				print(("Change '%s' to %s%s"% (ctrl, "".join(ctrlsFreeChars[i]), extraText)))
 			else:
-				print "do not change %s" % ctrl
+				print(("do not change %s" % ctrl))
 		
 		
 #		

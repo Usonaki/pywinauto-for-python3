@@ -14,7 +14,7 @@ def do_test_1():
     app = Application().start_(r"c:\windows\Notepad")
     notepadWindow = app.Notepad
 
-    notepadWindow.Edit1.SetEditText(u"Hello, ägain!", 0, -1)
+    notepadWindow.Edit1.SetEditText("Hello, ägain!", 0, -1)
     sleep(0.8)
     notepadWindow.Edit.SetEditText("\r\nYou still there?")
 
@@ -45,14 +45,14 @@ def do_test_2():
     form.Edit.SetText(filename)
     sleep(.6)
 
-    print 'clicking button to create file'
+    print('clicking button to create file')
     form.CreateFile.Click()
 
     # now check that the file is there
     if os.path.exists(filename):
-        print 'file %s is present' % filename
+        print(('file %s is present' % filename))
     else:
-        print "file %s isn't there" % filename
+        print(("file %s isn't there" % filename))
 
     form.MenuSelect("File->Exit")
 
@@ -68,11 +68,11 @@ def do_test_3():
     app.PerformanceForm1.Clickme.Click()
     waited = 0
     while not app.PerformacneForm1.Edit1._.Texts and not waited >= 1:
-        print 'waiting'
+        print('waiting')
         sleep(.1)
         waited += .1
 
-    print `app.PerformacneForm1.Edit1._.Texts`
+    print((repr(app.PerformacneForm1.Edit1._.Texts)))
 
 
 

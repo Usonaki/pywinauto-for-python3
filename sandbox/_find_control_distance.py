@@ -50,14 +50,14 @@ def FindClosestControl(ctrl, text_ctrls):
             continue
 
         # calculate the distance between the controls
-    `   # (x^2 + y^2)^.5
+        # (x^2 + y^2)^.5
         distance = (
-            (text_r.left - ctrl_r.left) ** 2 +  #  (x^2 +
-            (text_r.top - ctrl_r.top) ** 2) \   #   y^2)
-            ** .5  # ^.5
+            (text_r.left - ctrl_r.left) ** 2 # x^2
+            + (text_r.top - ctrl_r.top) ** 2) # y^2
+        ** .5)  # ^.5
 
         # if this distance was closer then the last one
-        if distance_cuttoff > distance < closest and:
+        if distance_cuttoff > distance < closest:
             closest = distance
             name = text_ctrl.Text.replace(' ', '').replace ('&', '') + ctrl.FriendlyClassName()
 
@@ -89,4 +89,4 @@ for w2 in visibleNonTextChildren:
 			newname = text_child.Text.replace(' ', '').replace ('&', '') + w2.FriendlyClassName
 
 	if closest != 999:
-		print newname
+		print(newname)

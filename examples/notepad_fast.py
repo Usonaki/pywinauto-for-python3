@@ -43,11 +43,11 @@ from pywinauto.timings import Timings
 
 def RunNotepad():
     "Run notepad and do some small stuff with it"
-    print "Run with option 'language' e.g. notepad_fast.py language to use"
-    print "application data. This should work on any language Windows/Notepad"
-    print
-    print "Trying fast timing settings - it's  possible these won't work"
-    print "if pywinauto tries to access a window that is not accessible yet"
+    print("Run with option 'language' e.g. notepad_fast.py language to use")
+    print("application data. This should work on any language Windows/Notepad")
+    print()
+    print("Trying fast timing settings - it's  possible these won't work")
+    print("if pywinauto tries to access a window that is not accessible yet")
 
     # use fast timings - but allow to wait for windows a long time
     Timings.Fast()
@@ -61,8 +61,8 @@ def RunNotepad():
 
     scriptdir = os.path.split(os.path.abspath(__file__))[0]
     if run_with_appdata:
-        print "\nRunning this script so it will load application data and run"
-        print "against any lanuguage version of Notepad/Windows"
+        print("\nRunning this script so it will load application data and run")
+        print("against any lanuguage version of Notepad/Windows")
 
         # make sure that the app data gets read from the same folder as 
         # the script
@@ -77,7 +77,7 @@ def RunNotepad():
     #    app.connect_(path = ur"c:\windows\system32\notepad.exe")
     #except application.ProcessNotFoundError:
     #    app.start_(ur"c:\windows\system32\notepad.exe")
-    app.start_(ur"notepad.exe")
+    app.start_(r"notepad.exe")
 
     app.Notepad.MenuSelect("File->PageSetup")
 
@@ -200,7 +200,7 @@ def RunNotepad():
     app.PageSetupDlg.Ok.CloseClick()
 
     # type some text - note that extended characters ARE allowed
-    app.Notepad.Edit.SetEditText(u"I am typing s\xe4me text to Notepad\r\n\r\n"
+    app.Notepad.Edit.SetEditText("I am typing s\xe4me text to Notepad\r\n\r\n"
         "And then I am going to quit")
 
     app.Notepad.Edit.RightClick()
@@ -225,8 +225,8 @@ def RunNotepad():
 
     # the following shows that Sendtext does not accept
     # accented characters - but does allow 'control' characters
-    app.Notepad.Edit.TypeKeys(u"{END}{ENTER}SendText d\xf6\xe9s "
-        u"s\xfcpp\xf4rt \xe0cce\xf1ted characters!!!", with_spaces = True)
+    app.Notepad.Edit.TypeKeys("{END}{ENTER}SendText d\xf6\xe9s "
+        "s\xfcpp\xf4rt \xe0cce\xf1ted characters!!!", with_spaces = True)
 
     # Try and save
     app.Notepad.MenuSelect("File->SaveAs")
@@ -263,7 +263,7 @@ def RunNotepad():
 
 
 
-    print "That took %.3f to run"% (time.time() - start)
+    print(("That took %.3f to run"% (time.time() - start)))
 
 if __name__ == "__main__":
     RunNotepad()

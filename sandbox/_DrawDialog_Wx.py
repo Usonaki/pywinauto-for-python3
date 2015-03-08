@@ -25,7 +25,7 @@ import PyDlgCheckerWrapper
 
 import sys
 if len(sys.argv) < 2 :
-	print "Please specify the XML file to read"
+	print("Please specify the XML file to read")
 	sys.exit()
 
 
@@ -70,7 +70,7 @@ class MyFrame(wxFrame):
 		for ctrl in dlg.AllControls()[1:]:
 			wx_class_type = classes.get(ctrl.FriendlyClassName, wxStaticText)
 			
-			print ctrl.FriendlyClassName, wx_class_type
+			print((ctrl.FriendlyClassName, wx_class_type))
 			
 			if wx_class_type:
 				width = ctrl.Rectangle.right - ctrl.Rectangle.left

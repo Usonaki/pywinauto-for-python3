@@ -29,9 +29,9 @@ from pywinauto import tests
 def SakuraTest():
 
 	app = application.Application()
-	app.start_(ur"\Program Files\sakura\sakura.exe")
+	app.start_(r"\Program Files\sakura\sakura.exe")
 	
-	mainwin = app[u'無題sakura']
+	mainwin = app['無題sakura']
 
 	# menu's from this application are not recovered well
 	# but even with Japanese Regional settings they are not
@@ -41,9 +41,9 @@ def SakuraTest():
 	# open some dialog
 	mainwin.TypeKeys("%OC")
 
-	dlg = app[u'共通設定']
+	dlg = app['共通設定']
 
-	app[u'共通設定'][u"フリーカーソル"].Click()
+	app['共通設定']["フリーカーソル"].Click()
 
 	dlg.MSDOS.Click()
 	
@@ -59,7 +59,7 @@ def Main():
 	
 	SakuraTest()	
 	
-	print "Total time taken:", time.time() - start
+	print(("Total time taken:", time.time() - start))
 
 if __name__ == "__main__":
 	Main()

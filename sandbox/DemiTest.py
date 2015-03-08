@@ -83,7 +83,7 @@ class dialog(object):
             0,                                # class
             ]
  		
-        title = map(ord, unicode(title)) + [0]
+        title = list(map(ord, str(title))) + [0]
         p += title
         if len(p) % 2:
             p.append(0)
@@ -116,9 +116,9 @@ class dialog(object):
             HIWORD(self._id)         # ...
             ]
  		
-        classname = map(ord, unicode(classname)) + [0]
+        classname = list(map(ord, str(classname))) + [0]
         p += classname
-        title = map(ord, unicode(title)) + [0]
+        title = list(map(ord, str(title))) + [0]
         p += title
         
         if len(p) % 2:
@@ -156,7 +156,7 @@ class dialog(object):
 
 import sys
 if len(sys.argv) < 2 :
-	print "Please specify the XML file to read"
+	print("Please specify the XML file to read")
 	sys.exit()
 
 import PyDlgCheckerWrapper
@@ -166,7 +166,7 @@ dlg = PyDlgCheckerWrapper.TestInfo['Dialog']
 d = None
 
 for i, ctrl in enumerate(dlg.AllControls()):
-	print i
+	print(i)
 	if i == 0:
 		d = dialog(
 			ctrl.Text,
@@ -190,6 +190,6 @@ for i, ctrl in enumerate(dlg.AllControls()):
 			ctrl.Rectangle.bottom - ctrl.Rectangle.top,	# cy
 		)
 
-	print d
+	print(d)
 d.run_modal()
  

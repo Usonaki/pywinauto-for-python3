@@ -25,11 +25,11 @@ Python package for automating GUI manipulation on Windows
 __revision__ = "$Revision$"
 __version__ = "0.4.2"
 
-import findwindows
+from pywinauto import findwindows
 WindowAmbiguousError = findwindows.WindowAmbiguousError
 WindowNotFoundError = findwindows.WindowNotFoundError
 
-import findbestmatch
+from pywinauto import findbestmatch
 MatchError = findbestmatch.MatchError
 
-from application import Application, WindowSpecification
+from .application import Application, WindowSpecification

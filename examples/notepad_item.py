@@ -35,7 +35,7 @@ from pywinauto import findwindows
 "Run a quick test on Notepad"
 
 app = application.Application()
-app.start_(ur"notepad.exe")
+app.start_(r"notepad.exe")
 
 app['Notepad'].Wait('ready')
 
@@ -91,7 +91,7 @@ app['PageSetup2']['OK'].CloseClick()
 app['PageSetup']['Ok'].CloseClick()
 
 # type some text
-app['Notepad']['Edit'].SetEditText(u"I am typing s\xe4me text to Notepad"
+app['Notepad']['Edit'].SetEditText("I am typing s\xe4me text to Notepad"
     "\r\n\r\nAnd then I am going to quit")
 
 # exit notepad

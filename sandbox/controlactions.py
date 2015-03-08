@@ -234,7 +234,7 @@ def settext_action(ctrl, text, append = False):
     if append:
         text = ctrl.Text + text
 
-    text = ctypes.c_wchar_p(unicode(text))
+    text = ctypes.c_wchar_p(str(text))
     ctrl.PostMessage(win32defines.WM_SETTEXT, 0, text)
 
 #====================================================================
@@ -276,7 +276,7 @@ def combobox_select(ctrl, item):
 
     # Make sure we have an index  so if passed in a
     # string then find which item it is
-    if isinstance(item, (int, long)):
+    if isinstance(item, int):
         index = item
     else:
         index = ctrl.Texts.index(item) -1
@@ -301,7 +301,7 @@ def listbox_select(ctrl, item):
 
     # Make sure we have an index  so if passed in a
     # string then find which item it is
-    if isinstance(item, (int, long)):
+    if isinstance(item, int):
         index = item
     else:
         index = ctrl.Texts.index(item)
@@ -322,7 +322,7 @@ def set_edit_text(ctrl, text, pos_start = 0, pos_end = -1):
 
     set_edit_selection(ctrl, pos_start, pos_end)
 
-    text = ctypes.c_wchar_p(unicode(text))
+    text = ctypes.c_wchar_p(str(text))
     ctrl.SendMessage(win32defines.EM_REPLACESEL, True, text)
 
 
@@ -333,7 +333,7 @@ def set_edit_selection(ctrl, start = 0, end = -1):
     verify_enabled(ctrl)
 
     # if we have been asked to select a string
-    if isinstance(start, basestring):
+    if isinstance(start, str):
         string_to_select = start
         #
         start = ctrl.texts[1].index(string_to_select)
@@ -349,7 +349,7 @@ def select_tab_action(ctrl, tab):
 
     verify_enabled(ctrl)
 
-    if isinstance(tab, basestring):
+    if isinstance(tab, str):
         # find the string in the tab control
         bestText = findbestmatch.find_best_match(tab, ctrl.Texts, ctrl.Texts)
         tab = ctrl.Texts.index(bestText) - 1
@@ -397,7 +397,7 @@ def select_menuitem_action(ctrl, path, items = None):
 #====================================================================
 def write_debug_text(ctrl, text):
     "Write some debug text over the window"
-    dc = win32functions.CreateDC(u"DISPLAY", None, None, None )
+    dc = win32functions.CreateDC("DISPLAY", None, None, None )
 
     if not dc:
         raise ctypes.WinError()
@@ -408,7 +408,7 @@ def write_debug_text(ctrl, text):
     #    dc, rect.left, rect.top, unicode(text), len(text))
     ret = win32functions.DrawText(
         dc,
-        unicode(text),
+        str(text),
         len(text),
         ctypes.byref(rect),
         win32defines.DT_SINGLELINE)
@@ -448,7 +448,7 @@ def draw_outline(
     hBrush = win32functions.CreateBrushIndirect(ctypes.byref(brush))
 
     # get the Device Context
-    dc = win32functions.CreateDC(u"DISPLAY", None, None, None )
+    dc = win32functions.CreateDC("DISPLAY", None, None, None )
 
     # push our objects into it
     win32functions.SelectObject(dc, hBrush)
@@ -877,11 +877,11 @@ def add_actions(to_obj):
             to_obj.__class__, action_name, _standard_action_funcs[action_name])
 
     # check if there are actions specific to this type of control
-    if _class_specific_actions.has_key(to_obj.FriendlyClassName):
+    if to_obj.FriendlyClassName in _class_specific_actions:
 
         # apply these actions to the class
         actions = _class_specific_actions[to_obj.FriendlyClassName]
-        for action_name, action_func in actions.items():
+        for action_name, action_func in list(actions.items()):
             setattr (to_obj.__class__, action_name, action_func)
 
     # If the object has menu items allow MenuSelect

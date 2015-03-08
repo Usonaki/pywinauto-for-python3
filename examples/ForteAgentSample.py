@@ -5,7 +5,7 @@ e.g. whether it is free or not, whether it is still in the grace
 period. For this reason this example script may or may not work well
 for you"""
 
-print __doc__
+print(__doc__)
 
 import time
 from pprint import pprint
@@ -79,15 +79,15 @@ if app.ToolsApplyFilters.OK.Exists():
 #app.ApplyFiltersToFolders.Cancel.Click()
 
 
-print "==" * 20
-print "The Agent File Menu..."
-print "==" * 20
+print(("==" * 20))
+print("The Agent File Menu...")
+print(("==" * 20))
 pprint (app.FreeAgent.MenuItems()[1])
 try:
     app.FreeAgent.MenuSelect("File->Print")
     app.Print.Cancel.Click()
 except:
-    print "Print Menu was probably disabled"
+    print("Print Menu was probably disabled")
 
 # quit Agent
 app.FreeAgent.MenuSelect("File -> Exit")

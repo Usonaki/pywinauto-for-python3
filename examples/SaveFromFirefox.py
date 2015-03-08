@@ -16,7 +16,7 @@ import os.path
 from pywinauto import WindowAmbiguousError
 
 if len(sys.argv) < 2:
-    print "please specify a web address to download"
+    print("please specify a web address to download")
     sys.exit()
 
 web_addresss = sys.argv[1]
@@ -56,7 +56,7 @@ else:
     mozilla = app.window_(title_re = ".*Mozilla Firefox")
 
 # ie doesn't define it's menus as Menu's but actually as a toolbar!
-print "No Menu's in FireFox:", mozilla.MenuItems()
+print(("No Menu's in FireFox:", mozilla.MenuItems()))
 
 # File -> Save As
 mozilla.TypeKeys("%FA")
@@ -69,12 +69,12 @@ try:
     # if asked to overwrite say yes
     if app.SaveAs.Yes.Exists():
         app.SaveAs.Yes.CloseClick()
-except WindowAmbiguousError, e:
+except WindowAmbiguousError as e:
     for w in e.windows:
         w = HwndWrapper(w)
-        print w.WindowText(), w.Class()
+        print((w.WindowText(), w.Class()))
 
-print "saved:", outputfilename
+print(("saved:", outputfilename))
 
 # File close tab or close
 #(Firefox makes it easy for us having the same shortcut for both!

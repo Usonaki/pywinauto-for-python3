@@ -100,8 +100,8 @@ def CompareToRefFontTest(windows):
                     [win, ],
                     {
                         "ValueType": font_attrib,
-                        "Ref": unicode(ref_value),
-                        "Loc": unicode(loc_value),
+                        "Ref": str(ref_value),
+                        "Loc": str(loc_value),
                     },
                     testname,
                     0,)

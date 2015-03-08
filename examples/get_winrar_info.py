@@ -65,7 +65,7 @@ t = {
 
     # create profile button
     'CreateDefaultProfile' : (
-        u"Creerleprofilpardéfault",
+        "CreerleprofilpardÃ©fault",
         "Standardfestlegen",
         "Vytvoritimplicitni"),
 

@@ -22,7 +22,7 @@
 
 __revision__ = "$Revision$"
 
-from win32defines import LF_FACESIZE, NMTTDISPINFOW_V1_SIZE, HDITEMW_V1_SIZE
+from pywinauto.win32defines import LF_FACESIZE, NMTTDISPINFOW_V1_SIZE, HDITEMW_V1_SIZE
 
 import ctypes
 from ctypes import \
@@ -179,10 +179,10 @@ class RECT(Structure):
         else:
             #if not isinstance(otherRect_or_left, (int, long)):
             #    print type(self), type(otherRect_or_left), otherRect_or_left
-            self.left = long(otherRect_or_left)
-            self.right = long(right)
-            self.top = long(top)
-            self.bottom = long(bottom)
+            self.left = int(otherRect_or_left)
+            self.right = int(right)
+            self.top = int(top)
+            self.bottom = int(bottom)
 
 
 #    #----------------------------------------------------------------
@@ -455,7 +455,7 @@ class MENUITEMINFOW(Structure):
         ('dwTypeData', c_wchar_p), #LPWSTR),
         ('cch', UINT),
     ]
-assert sizeof(MENUITEMINFOW) == 44, sizeof(MENUITEMINFOW)
+assert sizeof(MENUITEMINFOW) == 48, sizeof(MENUITEMINFOW)
 assert alignment(MENUITEMINFOW) == 2, alignment(MENUITEMINFOW)
 
 class MENUBARINFO(Structure):
@@ -664,8 +664,8 @@ class SECURITY_ATTRIBUTES(Structure):
         ('lpSecurityDescriptor', LPVOID),
         ('bInheritHandle', BOOL),
     ]
-assert sizeof(SECURITY_ATTRIBUTES) == 12, sizeof(SECURITY_ATTRIBUTES)
-assert alignment(SECURITY_ATTRIBUTES) == 4, alignment(SECURITY_ATTRIBUTES)
+assert sizeof(SECURITY_ATTRIBUTES) == 24, sizeof(SECURITY_ATTRIBUTES)
+assert alignment(SECURITY_ATTRIBUTES) == 8, alignment(SECURITY_ATTRIBUTES)
 
 # C:/PROGRA~1/MICROS~4/VC98/Include/winbase.h 3794
 class STARTUPINFOW(Structure):
@@ -690,8 +690,8 @@ class STARTUPINFOW(Structure):
         ('hStdOutput', HANDLE),
         ('hStdError', HANDLE),
     ]
-assert sizeof(STARTUPINFOW) == 68, sizeof(STARTUPINFOW)
-assert alignment(STARTUPINFOW) == 4, alignment(STARTUPINFOW)
+assert sizeof(STARTUPINFOW) == 88, sizeof(STARTUPINFOW)
+assert alignment(STARTUPINFOW) == 8, alignment(STARTUPINFOW)
 
 # C:/PROGRA~1/MICROS~4/VC98/Include/winbase.h 229
 class PROCESS_INFORMATION(Structure):
@@ -702,8 +702,8 @@ class PROCESS_INFORMATION(Structure):
         ('dwProcessId', DWORD),
         ('dwThreadId', DWORD),
     ]
-assert sizeof(PROCESS_INFORMATION) == 16, sizeof(PROCESS_INFORMATION)
-assert alignment(PROCESS_INFORMATION) == 4, alignment(PROCESS_INFORMATION)
+assert sizeof(PROCESS_INFORMATION) == 24, sizeof(PROCESS_INFORMATION)
+assert alignment(PROCESS_INFORMATION) == 8, alignment(PROCESS_INFORMATION)
 
 
 # C:/PROGRA~1/MICROS~4/VC98/Include/commctrl.h 3417

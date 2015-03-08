@@ -48,12 +48,12 @@ def OnMouseEvent(event):
             wrapped.TopLevelParent().WindowText(), wrapped.TopLevelParent().Class())
 
     if "up" in event.MessageName and "down" in last_message:
-        print "time.sleep(%d)"% (event.Time - last_event_time)
-        print 'app%s.Window_(title = "%s", class_name = "%s").%sClickInput()'%(
+        print(("time.sleep(%d)"% (event.Time - last_event_time)))
+        print(('app%s.Window_(title = "%s", class_name = "%s").%sClickInput()'%(
             toplevel,
             wrapped.WindowText(),
             wrapped.Class(),
-            button)
+            button)))
 
     last_event_time = event.Time
     last_message = event.MessageName
@@ -95,14 +95,14 @@ def OnKeyboardEvent(event):
         return True
 
     if "down" in event.MessageName:
-        print "time.sleep(%d)"% (event.Time - last_event_time)
-        print 'app.Window_(title = "%s", class_name = "%s").Typekeys("%s")'%(
+        print(("time.sleep(%d)"% (event.Time - last_event_time)))
+        print(('app.Window_(title = "%s", class_name = "%s").Typekeys("%s")'%(
             wrapped.WindowText(),
             wrapped.Class(),
-            `event.Key`)
+            repr(event.Key))))
 
     last_event_time = event.Time
-    print 'MessageName:',event.MessageName
+    print(('MessageName:',event.MessageName))
 
 
 #  print 'Message:',event.Message

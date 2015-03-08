@@ -22,21 +22,21 @@ while True:
 
     wrapped_win = HwndWrapper.HwndWrapper(win32functions.WindowFromPoint(pt))
 
-    print "========= %s =========="% wrapped_win.FriendlyClassName()
-    print "'%s'" % wrapped_win.WindowText().encode('unicode-escape', 'replace')
+    print(("========= %s =========="% wrapped_win.FriendlyClassName()))
+    print(("'%s'" % wrapped_win.WindowText().encode('unicode-escape', 'replace')))
 
     parent =  wrapped_win.Parent()
     if parent:
-        print "In Window '%s' - '%s'" % (
-            parent.FriendlyClassName(), parent.WindowText().encode())#'mbcs', 'replace', "?"))
+        print(("In Window '%s' - '%s'" % (
+            parent.FriendlyClassName(), parent.WindowText().encode())))#'mbcs', 'replace', "?"))
 
     parent2 =  wrapped_win.TopLevelParent()
     if parent2:
-        print "In Window '%s' - '%s'" % (
-            parent2.FriendlyClassName(), parent2.WindowText().encode())#'mbcs', 'replace'))
+        print(("In Window '%s' - '%s'" % (
+            parent2.FriendlyClassName(), parent2.WindowText().encode())))#'mbcs', 'replace'))
 
 
-    print
+    print()
 
     #print pt.x, pt.y, win32functions.WindowFromPoint(pt)
 

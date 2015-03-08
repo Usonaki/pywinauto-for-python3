@@ -101,6 +101,6 @@ controls also.
 try:
     import ctypes
     import SendKeys
-except ImportError, e:
-    print "The following module has to be installed before running pywinauto..."
-    print "\t", str(e).replace("No module named ", "")
+except ImportError as e:
+    print("The following module has to be installed before running pywinauto...")
+    print(("\t", str(e).replace("No module named ", "")))

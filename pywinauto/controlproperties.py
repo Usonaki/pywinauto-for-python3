@@ -83,7 +83,7 @@ class ControlProps(dict):
 def GetMenuBlocks(ctrls):
     allMenuBlocks = []
     for ctrl in ctrls:
-        if ctrl.has_key('MenuItems'):
+        if 'MenuItems' in ctrl:
             # we need to get all the separate menu blocks!
             menuBlocks = MenuBlockAsControls(ctrl.MenuItems())
             allMenuBlocks.extend(menuBlocks)
@@ -114,7 +114,7 @@ def MenuBlockAsControls(menuItems, parentage = []):
         curBlock.append(itemAsCtrl)
 
         # If the item has a sub menu
-        if item.has_key('MenuItems'):
+        if 'MenuItems' in item:
 
             # add the current item the path
             parentage.append(item['Text'])

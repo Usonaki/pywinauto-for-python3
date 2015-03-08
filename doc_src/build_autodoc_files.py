@@ -54,7 +54,7 @@ for root, dirs, files in os.walk(pywin_folder):
         if os.path.exists(doc_source_filename):
             continue
 
-        print py_filename
+        print(py_filename)
 
         out = open(doc_source_filename, "w")
 

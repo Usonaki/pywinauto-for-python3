@@ -28,14 +28,9 @@ import re
 
 import ctypes
 
-import win32functions
-import win32structures
-import handleprops
 
-import findbestmatch
-
-import controls
-
+from pywinauto import win32functions, win32structures, handleprops, controls, findbestmatch
+from pywinauto.handleprops import enum_child_windows
 
 # todo: we should filter out invalid windows before returning
 
@@ -48,8 +43,6 @@ class WindowNotFoundError(Exception):
 class WindowAmbiguousError(Exception):
     "There was more then one window that matched"
     pass
-
-
 
 #=========================================================================
 def find_window(**kwargs):
@@ -69,7 +62,7 @@ def find_window(**kwargs):
         exception =  WindowAmbiguousError(
             "There are %d windows that match the criteria %s"% (
             len(windows),
-            unicode(kwargs),
+            str(kwargs),
             )
         )
 
@@ -237,34 +230,5 @@ def enum_windows():
     return windows
 
 
-#=========================================================================
-def enum_child_windows(handle):
-    "Return a list of handles of the child windows of this handle"
 
-    # this will be filled in the callback function
-    child_windows = []
-
-    # callback function for EnumChildWindows
-    def EnumChildProc(hwnd, lparam):
-        "Called for each child - adds child hwnd to list"
-
-        # append it to our list
-        child_windows.append(hwnd)
-
-        # return true to keep going
-        return True
-
-    # define the child proc type
-    enum_child_proc = ctypes.WINFUNCTYPE(
-        ctypes.c_int, 			# return type
-        win32structures.HWND, 	# the window handle
-        win32structures.LPARAM)	# extra information
-
-    # update the proc to the correct type
-    proc = enum_child_proc(EnumChildProc)
-
-    # loop over all the children (callback called for each)
-    win32functions.EnumChildWindows(handle, proc, 0)
-
-    return child_windows
 

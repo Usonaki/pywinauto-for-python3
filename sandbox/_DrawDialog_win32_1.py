@@ -30,7 +30,7 @@ import PyDlgCheckerWrapper
 
 import sys
 if len(sys.argv) < 2 :
-	print "Please specify the XML file to read"
+	print("Please specify the XML file to read")
 	sys.exit()
 
 PyDlgCheckerWrapper.InitDialogFromFile(sys.argv[1])
@@ -150,7 +150,7 @@ def Main():
 	for i, ctrl in enumerate(dlg.AllControls()):
 	
 		if i == 0:
-			print "FIRST"
+			print("FIRST")
 			#klass = u"#32770"
 			style = ctrl.Style()
 		else:
@@ -176,7 +176,7 @@ def Main():
 			ctrl.Rectangle.bottom - ctrl.Rectangle.top,	# cy
 			parent,	# parent
 			0,	# menu
-			ctypes.windll.kernel32.GetModuleHandleW(u"user32.dll"),	# hInstance ???
+			ctypes.windll.kernel32.GetModuleHandleW("user32.dll"),	# hInstance ???
 			0,	# lparam		
 			)
 	
@@ -185,15 +185,15 @@ def Main():
 		time.sleep(.3)
 		if not parent:
 			parent = handle
-		print handle,
+		print(handle, end=' ')
 		x = (c_wchar * 200)()
 		ctypes.windll.user32.GetClassNameW(handle, byref(x) ,100)
-		print x.value
+		print((x.value))
 		style = ctypes.windll.user32.GetWindowLongW(handle, -16)
 		ctypes.windll.user32.EnableWindow(handle, 1)
 		
 		if style != ctrl.Style():
-			print "FAILED"
+			print("FAILED")
 		
 		
 		
